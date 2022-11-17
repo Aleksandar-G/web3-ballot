@@ -11,18 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.row {
-  border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  width: 75%;
-  margin-left: auto;
-  margin-right:auto;
-}
-
-.ballot{
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-}

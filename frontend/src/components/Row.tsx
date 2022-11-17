@@ -17,6 +17,7 @@ function Row({ checkboxHandle, value, name }: props) {
           checkboxHandle(e)
         }}
       ></input>
+      <span className="checkmark"></span>
       <p>{name}</p>
     </div>
   )

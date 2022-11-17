@@ -7,6 +7,8 @@ contract GToken {
     mapping(uint => string) candidates;
     mapping(uint => uint) votes;
 
+    event VoteCasted(address voter, string votedFor);
+
 
     constructor(){
         candidates[1] = "John Doe";
@@ -32,6 +34,8 @@ contract GToken {
     function castVote(uint candidateNumber) public returns(bool valid) {
         votes[candidateNumber]++;
 
+        emit VoteCasted(msg.sender, candidates[candidateNumber]);
+
         return true;
     }
 
@@ -50,3 +54,5 @@ contract GToken {
         return allVotes;
     }
 }
+
+// 0xFB2638bDC2E2F9F9c6860a187B69b8219479A3D1
