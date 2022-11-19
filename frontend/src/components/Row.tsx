@@ -10,6 +10,7 @@ function Row({ checkboxHandle, value, name }: props) {
   return (
     <div className="ballotRow">
       <input
+        className="checkbox"
         type="checkbox"
         value={value}
         onChange={(e) => {
