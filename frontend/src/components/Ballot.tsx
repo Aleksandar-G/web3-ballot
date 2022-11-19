@@ -32,7 +32,6 @@ function Ballot({ setStep, setVoteCasted, setVoteProcessed }: props) {
 
   // Increment voting step and cast vote
   const handleVoteButton = () => {
-    //setStep(1)
     castVote(selectedCandidate, setVoteCasted, setVoteProcessed)
   }
 
