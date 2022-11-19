@@ -28,7 +28,7 @@ function Ballot({ setStep, setVoteCasted, setVoteProcessed }: props) {
 
   const initializeBallot = () => {
     checkBlockchainConnection()
-      ? getAllCandidates(setError)
+      ? getAllCandidates()
           .then((res) => setCandidates(res))
           .catch((res) =>
             setError(
