@@ -8,9 +8,8 @@ interface props {
 
 function Row({ checkboxHandle, value, name }: props) {
   return (
-    <div className="row">
+    <div className="ballotRow">
       <input
-        className="checkbox"
         type="checkbox"
         value={value}
         onChange={(e) => {
@@ -18,7 +17,7 @@ function Row({ checkboxHandle, value, name }: props) {
         }}
       ></input>
       <span className="checkmark"></span>
-      <p>{name}</p>
+      <p className="my-auto mx-3">{name}</p>
     </div>
   )
 }
