@@ -1,13 +1,18 @@
 import { Contract, ethers } from 'ethers'
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from './contractInfo'
 
-const provider = new ethers.providers.Web3Provider(window.ethereum)
+let provider: ethers.providers.Web3Provider | undefined = undefined
 
 let contract: Contract | undefined = undefined
 
-const checkBlockchainConnection = () => {}
+export const checkBlockchainConnection = () => {
+  let res = true
+  window.ethereum ? (res = true) : (res = false)
+  return res
+}
 
 export const getAllCandidates = async () => {
+  provider = new ethers.providers.Web3Provider(window.ethereum)
   contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
 
   const res = await contract?.getCandidates()
@@ -15,23 +20,21 @@ export const getAllCandidates = async () => {
   return res
 }
 
-export const handleVote = async (candidateNumber: number) => {
-  if (window.ethereum) {
-    console.log('Hello')
+export const castVote = async (
+  candidateNumber: number,
+  setVoteCasted: React.Dispatch<React.SetStateAction<boolean>>,
+  setVoteProcessed: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
+  await provider?.send('eth_requestAccounts', [])
+  const signer = provider?.getSigner()
 
-    await provider.send('eth_requestAccounts', [])
-    const signer = provider.getSigner()
+  contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
 
-    contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
+  await contract?.castVote(candidateNumber)
 
-    const res = await contract?.castVote(candidateNumber)
+  setVoteCasted(true)
 
-    contract.on('VoteCasted', voteCasted)
-  } else {
-    alert('Install metamask')
-  }
-}
-
-const voteCasted = () => {
-  alert('vote casted'!)
+  contract.on('VoteCasted', () => {
+    setVoteProcessed(true)
+  })
 }

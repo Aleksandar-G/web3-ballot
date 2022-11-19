@@ -1,13 +1,14 @@
-import React from 'react';
-import Ballot from './components/Ballot';
-import Row from './components/Row';
+import React from 'react'
+import Ballot from './components/Ballot'
+import { Election } from './components/Election'
+import Row from './components/Row'
 
 function App() {
   return (
     <div className="App">
-      <Ballot/>
+      <Election />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

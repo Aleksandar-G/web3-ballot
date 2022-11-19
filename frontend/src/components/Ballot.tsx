@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { getAllCandidates, handleVote } from '../ether'
+import { checkBlockchainConnection, getAllCandidates, castVote } from '../ether'
 import Row from './Row'
 import '../styles/ballot.css'
 
-function Ballot() {
+interface props {
+  setStep: React.Dispatch<React.SetStateAction<number>>
+  setVoteCasted: React.Dispatch<React.SetStateAction<boolean>>
+  setVoteProcessed: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function Ballot({ setStep, setVoteCasted, setVoteProcessed }: props) {
   const [selectedCandidate, setSelectedCandidate] = useState(-1)
   const [candidates, setCandidates] = useState<string[]>([])
 
@@ -18,8 +24,21 @@ function Ballot() {
     event.target.checked = true
   }
 
+  const initializeBallot = () => {
+    checkBlockchainConnection()
+      ? getAllCandidates().then((res) => setCandidates(res))
+      : alert('install metamask')
+  }
+
+  // Increment voting step and cast vote
+  const handleVoteButton = () => {
+    //setStep(1)
+    castVote(selectedCandidate, setVoteCasted, setVoteProcessed)
+  }
+
+  // Fetch candidates
   useEffect(() => {
-    getAllCandidates().then((res) => setCandidates(res))
+    initializeBallot()
   }, [])
 
   return (
@@ -32,7 +51,7 @@ function Ballot() {
           <button
             type="button"
             className="voteButton"
-            onClick={() => handleVote(selectedCandidate)}
+            onClick={() => handleVoteButton()}
           >
             Vote
           </button>
