@@ -9,3 +9,11 @@ This is a small project for a voting system powered by a smart contract hosted o
 In order to use the project first you need to install metamask [wallet](https://metamask.io/) get some test matic for **Mumbai test net** from the [faucet](https://faucet.polygon.technology/).
 
 Then you can pull the project and and go to `frontend` folder and run `npm install` and then `npm start`
+
+## Technologies
+
+The smart contract is written in `Solidity`
+
+The frontend in written in `React.js`
+
+The connection between the smart contract and frontend is done with `ether.js`
