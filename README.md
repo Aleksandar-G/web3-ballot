@@ -10,6 +10,8 @@ In order to use the project first you need to install metamask [wallet](https://
 
 Then you can pull the project and and go to `frontend` folder and run `npm install` and then `npm start`
 
+You can also see a deployed verison on [https://web3-ballot.herokuapp.com]()
+
 ## Technologies
 
 The smart contract is written in `Solidity`
