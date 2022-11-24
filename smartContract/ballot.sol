@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.7;
 
-contract GToken {
+contract Ballot {
 
     uint candidatesCount = 10;
     mapping(uint => string) candidates;
@@ -24,21 +24,20 @@ contract GToken {
     }
 
     function getCandidates() public view returns (string[] memory){
-        string[] memory cadidatesNames = new string[](candidatesCount);
-        for (uint256 i = 0; i < candidatesCount; i++) {
-            cadidatesNames[i] = candidates[i];
+        string[] memory candidatesNames = new string[](candidatesCount);
+        for (uint256 i = 1; i <= candidatesCount; i++) {
+            candidatesNames[i-1] = candidates[i];
         }
-        return cadidatesNames;
+        return candidatesNames;
     }
 
     function castVote(uint candidateNumber) public returns(bool valid) {
-        votes[candidateNumber]++;
+        votes[candidateNumber] = votes[candidateNumber]+1;
 
-        emit VoteCasted(msg.sender, candidates[candidateNumber]);
+        emit VoteCasted(msg.sender, candidates[candidateNumber+1]);
 
         return true;
     }
-
 
     function getVotesPerCandidate(uint256 candidateNumber) public view returns (uint256 votesPerCandidate){
         return votes[candidateNumber];
@@ -54,5 +53,3 @@ contract GToken {
         return allVotes;
     }
 }
-
-// 0xFB2638bDC2E2F9F9c6860a187B69b8219479A3D1
