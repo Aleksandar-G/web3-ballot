@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Modal from 'react-bootstrap/Modal'
 import { PieChart } from './PieChart'
+import { getAllCandidates, getVotes } from '../ether'
 
 interface props {
   voteProcessed: boolean
@@ -10,9 +11,28 @@ interface props {
 
 export const ProcessVote = ({ voteProcessed }: props) => {
   const [showModal, setShowModal] = useState(false)
+  const [chartData, setChartData] = useState<any>()
 
   const handleCloseModal = () => setShowModal(false)
   const handleShowModal = () => setShowModal(true)
+
+  useEffect(() => {
+    getVotes().then((votes) => {
+      getAllCandidates().then((candidates) => {
+        setChartData({
+          labels: candidates,
+          datasets: [
+            {
+              label: '# of Votes',
+
+              data: votes,
+              borderWidth: 1,
+            },
+          ],
+        })
+      })
+    })
+  }, [])
 
   return (
     <>
@@ -48,7 +68,7 @@ export const ProcessVote = ({ voteProcessed }: props) => {
           <Modal.Title>Vote distribution</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <PieChart />
+          <PieChart data={chartData} />
         </Modal.Body>
       </Modal>
     </>
