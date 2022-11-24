@@ -32,7 +32,7 @@ function Ballot({ setStep, setVoteCasted, setVoteProcessed }: props) {
           .then((res) => setCandidates(res))
           .catch((res) =>
             setError(
-              'Make sure you are on Mumbai test network and refresh the page',
+              `Make sure you are on ${process.env.REACT_APP_SUPPORTED_CHAINS} and refresh the page`,
             ),
           )
       : setError(
