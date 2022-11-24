@@ -38,3 +38,16 @@ export const castVote = async (
     setVoteProcessed(true)
   })
 }
+
+export const getVotes = async () => {
+  provider = new ethers.providers.Web3Provider(window.ethereum)
+  contract = new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
+  const res = await contract?.getAllVotes()
+  const votes = res.map((x: any) => x.toString())
+  return votes
+}
+
+export const getVotesPerCandidate = async (candidateNumber: number) => {
+  const res = await contract?.getVotesPerCandidate()
+  return res
+}
