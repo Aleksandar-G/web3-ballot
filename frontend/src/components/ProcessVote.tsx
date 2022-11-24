@@ -47,7 +47,7 @@ export const ProcessVote = ({ voteProcessed }: props) => {
           </Alert>
         )}
       </div>
-      <div className="mx-auto w-25">
+      <div className="text-center">
         <Button
           onClick={() => {
             handleShowModal()
