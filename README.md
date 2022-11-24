@@ -6,9 +6,9 @@ This is a small project for a voting system powered by a smart contract hosted o
 
 ## How to use
 
-In order to use the project first you need to install metamask [wallet](https://metamask.io/) get some test matic for **Mumbai test net** from the [faucet](https://faucet.polygon.technology/).
+In order to use the project first you need to install metamask [wallet](https://metamask.io/) get some test matic for **Mumbai test net** from the [faucet](https://faucet.polygon.technology/). Then you need to intall node.js and npm [https://nodejs.org/en/](https://nodejs.org/en/)
 
-Then you can pull the project and and go to `frontend` folder and run `npm install` and then `npm start`
+Then you can pull the project and and go to the`frontend` folder and run `npm install` and then `npm start`
 
 You can also see a deployed verison on [https://web3-ballot.herokuapp.com](https://web3-ballot.herokuapp.com)
 
